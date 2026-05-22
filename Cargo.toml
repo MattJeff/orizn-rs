@@ -1,0 +1,20 @@
+[package]
+name = "orizn"
+version = "1.0.0"
+edition = "2021"
+authors = ["Orizn <api@orizn.app>"]
+description = "Official Rust SDK for the Orizn Visa API — 39,585 passport-destination pairs in 15 languages"
+license = "MIT"
+repository = "https://github.com/MattJeff/orizn-rs"
+homepage = "https://visa.orizn.app"
+documentation = "https://docs.rs/orizn"
+readme = "README.md"
+keywords = ["visa", "travel", "passport", "api", "immigration"]
+categories = ["api-bindings", "web-programming::http-client"]
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
