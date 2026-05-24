@@ -18,6 +18,7 @@
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::env;
+use std::sync::Once;
 
 #[derive(Debug, thiserror::Error)]
 pub enum Error {
@@ -79,13 +80,24 @@ pub struct Orizn {
 impl Orizn {
     /// Create a new client. Reads ORIZN_API_KEY from environment.
     pub fn new() -> Self {
+        let api_key = env::var("ORIZN_API_KEY").ok();
+
+        static HINT: Once = Once::new();
+        if api_key.is_none() {
+            HINT.call_once(|| {
+                eprintln!("[orizn] No API key found. Free mode: quick checks only.");
+                eprintln!("[orizn] Get your free key → https://visa.orizn.app");
+                eprintln!("[orizn] Then set: ORIZN_API_KEY=orizn_visa_...");
+            });
+        }
+
         Self {
             client: Client::builder()
                 .timeout(std::time::Duration::from_secs(10))
                 .user_agent("orizn-rs/1.0.0")
                 .build()
                 .expect("Failed to build HTTP client"),
-            api_key: env::var("ORIZN_API_KEY").ok(),
+            api_key,
             base_url: "https://visa.orizn.app".to_string(),
         }
     }

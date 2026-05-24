@@ -1,6 +1,6 @@
 [package]
 name = "orizn"
-version = "1.0.0"
+version = "1.0.1"
 edition = "2021"
 authors = ["Orizn <api@orizn.app>"]
 description = "Official Rust SDK for the Orizn Visa API — 39,585 passport-destination pairs in 15 languages"
