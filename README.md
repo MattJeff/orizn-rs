@@ -2,7 +2,7 @@
 
 Official Rust SDK for the [Orizn Visa API](https://visa.orizn.app).
 
-Check visa requirements for **39,585 passport-destination pairs** in **15 languages**.
+Check visa requirements for **40,027 passport-destination pairs** in **15 languages**.
 
 ## Install
 
